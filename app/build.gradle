@@ -15,7 +15,7 @@ android {
         jvmTarget = "1.8"
     }
     defaultConfig {
-        applicationId "com.example.doordash"
+        applicationId "com.example.robojyve"
         minSdkVersion 25
         targetSdkVersion 28
         versionCode 1
