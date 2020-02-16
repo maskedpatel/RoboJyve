@@ -1,24 +1,49 @@
 package com.example.robojyve
 
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.fragment.app.testing.FragmentScenario
+import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.recyclerview.widget.RecyclerView
+import com.example.robojyve.robohash.RoboHashFragment
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import java.util.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
-import org.junit.Test
-import org.junit.runner.RunWith
+// High level integration/UI test
+class DiscoverFragmentTest {
+    companion object {
+        const val DEFAULT_DELAY_MS: Long = 2000
+    }
 
-import org.junit.Assert.*
-
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-@RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.robojyve", appContext.packageName)
+    fun testDiscoverFragment(): Unit = runBlocking {
+        val fragment = launchFragmentInContainer<RoboHashFragment>()
+        delay(DEFAULT_DELAY_MS)
+        basicUICheck(fragment)
+        Unit
+    }
+
+    private suspend fun basicUICheck(fragment: FragmentScenario<RoboHashFragment>) {
+        val text = UUID.randomUUID().toString()
+        var itemCount = 0
+        fragment.onFragment {
+            val recyclerView = it.view!!.findViewById<RecyclerView>(R.id.roborecyclerview)
+            val adapter = recyclerView.adapter!!
+            itemCount = adapter.itemCount
+            val editText = it.view!!.findViewById<AppCompatEditText>(R.id.roborequest)
+            val button = it.view!!.findViewById<AppCompatButton>(R.id.robobutton)
+            editText.setText(text)
+            button.performClick()
+        }
+        delay(DEFAULT_DELAY_MS)
+        fragment.onFragment {
+            val recyclerView = it.view!!.findViewById<RecyclerView>(R.id.roborecyclerview)
+            val adapter = recyclerView.adapter!!
+            val updatedCount = adapter.itemCount
+            assertEquals(updatedCount, itemCount + 1)
+        }
     }
 }
