@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.robojyve.R
-import javax.inject.Inject
 
 /**
  * Adapter for discover recyclerview
  */
-class RoboHashAdapter @Inject constructor() : RecyclerView.Adapter<RoboHashViewHolder>() {
+class RoboHashAdapter(val onRoboClickFn: (url: String) -> Unit) :
+    RecyclerView.Adapter<RoboHashViewHolder>() {
 
     // Use list for O(1) read next runtime, most common use case
     private var roboItems: List<RoboHashItem> = listOf()
@@ -22,7 +22,7 @@ class RoboHashAdapter @Inject constructor() : RecyclerView.Adapter<RoboHashViewH
             parent,
             false
         )
-        return RoboHashViewHolder(view)
+        return RoboHashViewHolder(view, onRoboClickFn)
     }
 
     /**

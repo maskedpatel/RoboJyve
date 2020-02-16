@@ -9,7 +9,10 @@ import com.example.robojyve.R
 /**
  * View holder visualizing robo pic
  */
-class RoboHashViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class RoboHashViewHolder(
+    itemView: View,
+    val imageClickFn: (url: String) -> Unit
+) : RecyclerView.ViewHolder(itemView) {
 
     companion object {
         const val urlBase: String = "https://robohash.org/"
@@ -24,11 +27,16 @@ class RoboHashViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
      */
     fun populateData(roboHashItem: RoboHashItem) {
         //happens in IO thread async
+
+        val url = urlBase + roboHashItem.url
         ImageHandler.loadImage(
             itemView.context,
-            urlBase + roboHashItem.url,
+            url,
             thumbnail,
             R.drawable.ic_launcher_background
         )
+        thumbnail.setOnClickListener {
+            imageClickFn(url)
+        }
     }
 }

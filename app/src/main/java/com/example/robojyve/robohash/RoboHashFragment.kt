@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.robojyve.R
 import com.example.robojyve.base.RoboJyveFragment
-import com.example.robojyve.dagger.DaggerRoboHashAdapterComponent
-import javax.inject.Inject
 
 /**
  * Fragment for robo screen
@@ -22,8 +20,7 @@ import javax.inject.Inject
 class RoboHashFragment: RoboJyveFragment() {
 
     private lateinit var recyclerView: RecyclerView
-    @Inject
-    lateinit var adapter: RoboHashAdapter
+    private lateinit var adapter: RoboHashAdapter
     private lateinit var button: AppCompatButton
     private lateinit var roboUrl: AppCompatEditText
 
@@ -105,16 +102,24 @@ class RoboHashFragment: RoboJyveFragment() {
     private fun addUrl(url: String) {
         val urls = retrieveSavedUrls()
         urls.add(url)
-        sharedPreferences.edit().putStringSet(savedUrlsKey, urls).apply()
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.putStringSet(savedUrlsKey, urls).apply()
     }
 
     /**
-     * Init recyclerview via linear layout
+     * Init recyclerview via grid layout
      */
     private fun initializeRecyclerView(view: View) {
         recyclerView = view.findViewById(R.id.roborecyclerview)
         recyclerView.layoutManager = GridLayoutManager(this.requireContext(), numColumns)
-        DaggerRoboHashAdapterComponent.create().inject(this)
+        adapter = RoboHashAdapter {
+            replaceFragment(
+                RoboHashFullScreenFragment.newInstance(it),
+                true,
+                RoboHashFullScreenFragment.fragmentTag
+            )
+        }
         recyclerView.adapter = adapter
     }
 
