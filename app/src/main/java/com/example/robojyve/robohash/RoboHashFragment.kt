@@ -114,7 +114,7 @@ class RoboHashFragment: RoboJyveFragment() {
         recyclerView = view.findViewById(R.id.roborecyclerview)
         recyclerView.layoutManager = GridLayoutManager(this.requireContext(), numColumns)
         adapter = RoboHashAdapter {
-            replaceFragment(
+            addFragment(
                 RoboHashFullScreenFragment.newInstance(it),
                 true,
                 RoboHashFullScreenFragment.fragmentTag

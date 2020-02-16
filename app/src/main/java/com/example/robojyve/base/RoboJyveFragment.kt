@@ -28,14 +28,14 @@ abstract class RoboJyveFragment : Fragment() {
     /**
      * replace fragment via underlying activity's fragment manager
      */
-    fun replaceFragment(
+    fun addFragment(
         fragment: Fragment,
         addToBackStack: Boolean,
         tag: String,
         fade: Fade? = null
     ) {
         callMainActivityFunction {
-            it.replaceFragment(fragment, addToBackStack, tag, fade)
+            it.addFragment(fragment, addToBackStack, tag, fade)
         }
     }
 

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RoboJyve</string>\
     <string name="robo_request">Type Url here!</string>
+    <string name="robo_button">Add Robot!</string>
 </resources>

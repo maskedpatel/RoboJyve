@@ -28,7 +28,7 @@ class RoboHashViewModel : ViewModel() {
     }
 
     fun addItem(item: RoboHashItem) {
-        roboData.value?.add(item)
+        roboData.value?.add(0, item)
         roboData.notifyObserver()
     }
 }

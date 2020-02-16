@@ -52,7 +52,7 @@ class RoboJyveMainActivity : AppCompatActivity() {
     /**
      * Replace Replace current showing fragment with inputted fragment
      */
-    fun replaceFragment(
+    fun addFragment(
         fragment: Fragment,
         addToBackStack: Boolean,
         tag: String,
@@ -64,7 +64,7 @@ class RoboJyveMainActivity : AppCompatActivity() {
         if (addToBackStack) {
             ft.addToBackStack(tag)
         }
-        ft.replace(R.id.main_activity, fragment, tag)
+        ft.add(R.id.main_activity, fragment, tag)
         ft.commitAllowingStateLoss()
     }
 }

@@ -9,6 +9,7 @@
         android:id="@+id/roborequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,6 +23,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
+        android:gravity="center"
+        android:hint="@string/robo_button"
         android:layout_height="wrap_content">
 
     </androidx.appcompat.widget.AppCompatButton>
