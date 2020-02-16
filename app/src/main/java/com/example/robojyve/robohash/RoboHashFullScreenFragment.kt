@@ -57,6 +57,7 @@ class RoboHashFullScreenFragment: RoboJyveBundleFragment<RoboHashItem>() {
     private fun initializeUIItems(view: View) {
         title = view.findViewById(R.id.fullscreen_title)
         roboImage = view.findViewById(R.id.fullscreen_robo)
+        // Use case for the stored bundle load in our parent fragment.
         parameters?.url?.let { url ->
             title.text = url
             ImageHandler.loadImage(

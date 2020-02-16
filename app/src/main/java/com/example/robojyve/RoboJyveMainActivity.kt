@@ -11,14 +11,14 @@ import com.example.robojyve.robohash.RoboHashFragment
 
 
 /**
- * Underlying activity used for doordash lite app.
+ * Underlying activity used for robojyve.
  * Following single activity - multiple fragment architecture
  * Allows targeting of multiple screens and acts as a fragment controller
  */
 class RoboJyveMainActivity : AppCompatActivity() {
 
     /**
-     * Doordash main activity create
+     * Robojyve main activity create
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +50,7 @@ class RoboJyveMainActivity : AppCompatActivity() {
     }
 
     /**
-     * Replace Replace current showing fragment with inputted fragment
+     * adds a fragment
      */
     fun addFragment(
         fragment: Fragment,

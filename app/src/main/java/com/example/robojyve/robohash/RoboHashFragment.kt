@@ -1,6 +1,7 @@
 package com.example.robojyve.robohash
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,10 +42,17 @@ class RoboHashFragment: RoboJyveFragment() {
          * Title of the fragment
          */
         const val fragmentTitle: String = "RoboHasher"
-
+        /**
+         * num columns in recycl view
+         */
         const val numColumns: Int = 4
-
+        /**
+         * for shared preferences
+         */
         const val savedUrlsKey: String = "saved_urls"
+        /**
+         * for shared preferences
+         */
         const val roboPreferenceKey: String = "roboSP"
     }
 
@@ -61,7 +69,7 @@ class RoboHashFragment: RoboJyveFragment() {
     }
 
     /**
-     * Initialize recyclerview after view created
+     * Initialize UI stuff here
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -94,15 +102,19 @@ class RoboHashFragment: RoboJyveFragment() {
         initializeViewModel()
     }
 
-    private fun retrieveSavedUrls(): MutableSet<String> {
-        // shouldnt need double bang since im passing def value... whatever
-        return sharedPreferences.getStringSet(savedUrlsKey, mutableSetOf())!!
+    /** retrieve current urls from shared pref **/
+    private fun retrieveSavedUrls(pref: SharedPreferences = sharedPreferences): MutableSet<String> {
+        // shouldnt need double bang since im passing default value... but whatever. java libraries :)
+        return pref.getStringSet(savedUrlsKey, mutableSetOf())!!
     }
 
-    private fun addUrl(url: String) {
+    /**
+     * adds an url to shared preferences
+     */
+    private fun addUrl(url: String, pref: SharedPreferences = sharedPreferences) {
         val urls = retrieveSavedUrls()
         urls.add(url)
-        val editor = sharedPreferences.edit()
+        val editor = pref.edit()
         editor.clear()
         editor.putStringSet(savedUrlsKey, urls).apply()
     }

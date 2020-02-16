@@ -15,6 +15,7 @@ object ImageHandler {
      * Note that the glide call automatically occurs in IO thread asynchronously
      * Caching is in place, so you may see memory use gradually go up in profiler,
      * but eventually it will go back down.
+     * Handles network issues internally.
      * @param context Context to associate call to
      * @param url url of image
      * @param imageView image view to load image into

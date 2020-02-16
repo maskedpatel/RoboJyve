@@ -81,7 +81,9 @@ class RoboJyveOkHttpClientTest {
 
     @Test
     fun testRetrieveData(): Unit = runBlocking {
-        val host = "api.doordash.com"
+        // by using dependency injection we dont actually make any network calls, so url
+        // actually existing doesnt matter
+        val host = "api.jyve.com"
         val responseStr = "[{'key': '1'}, {'key': '2'}, {'key': '3'}]"
         val output = listOf("1", "2", "3")
         // bad data, imitate bad connection

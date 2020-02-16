@@ -13,7 +13,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 // High level integration/UI test
-class DiscoverFragmentTest {
+class RoboFragmentTest {
     companion object {
         const val DEFAULT_DELAY_MS: Long = 2000
     }
