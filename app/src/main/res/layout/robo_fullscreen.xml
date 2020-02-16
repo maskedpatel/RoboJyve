@@ -23,6 +23,7 @@
         android:id="@+id/fullscreen_robo"
         app:layout_constraintTop_toBottomOf="@id/fullscreen_title"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
     </androidx.appcompat.widget.AppCompatImageView>
