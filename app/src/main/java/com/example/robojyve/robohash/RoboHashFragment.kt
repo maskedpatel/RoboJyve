@@ -42,7 +42,7 @@ class RoboHashFragment: RoboJyveFragment() {
          */
         const val fragmentTitle: String = "RoboHasher"
 
-        const val numColumns: Int = 3
+        const val numColumns: Int = 4
 
         const val savedUrlsKey: String = "saved_urls"
         const val roboPreferenceKey: String = "roboSP"
