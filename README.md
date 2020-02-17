@@ -13,6 +13,9 @@ If the debug variant is run, LeakCanary will run to check for memory leaks and S
 The app is developed to scale into a single-activity-multiple-fragment architecture as described here: https://medium.com/rosberryapps/a-single-activity-android-application-why-not-fa2a5458a099 This design allows for targetting of many different screens, including tablets and other large devices.
 
 Some future improvements/notes about issues:
+
 -Shared preferences is used to persist data through resets, however the data is stored as a set. On app relaunch, order of the robot pictures is not maintained.
+
 -On network failure, the robot images will display a default picture instead. This is handled by Glide and currently there is no retry mechanism when network is resumed, therefore app must be restarted to reload images.
+
 -Support dark mode which is a requirement for Android Q devices
